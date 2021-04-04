@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STACK LIBRARY</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/result.css">
+
+    <meta property="og:title" content="나의 소설 취향은?" />
+    <meta property="og:image" content="https://github.com/2dowon/Project-StackLibrary/blob/web/static/img/kakao_share_img.png?raw=true" />
+    <meta property="og:url" content="http://3.35.151.193:5000/" />
+    <meta property="og:description" content="나에게 꼭 맞는 소설은 무엇일까?" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <img src="../static/img/newLogo.png" alt="logo" class="mobile_logo">
+    <div class="mobile_orderings">
+        {% if order_type == "basic" %}
+                    <a href="/result?order_by=high_price" class="ordering">높은 가격 순 |</a>
+                    <a href="/result?order_by=low_price" class="ordering">낮은 가격 순 |</a>
+                    <a href="/result?order_by=high_rating" class="ordering">높은 평점 순 |</a>
+                    <a href="/result?order_by=high_review" class="ordering">리뷰 많은 순</a>
+                {% elif order_type == "high_price" %}
+                    <a href="/result?order_by=high_price" class="ordering order_type">높은 가격 순 |</a>
+                    <a href="/result?order_by=low_price" class="ordering">낮은 가격 순 |</a>
+                    <a href="/result?order_by=high_rating" class="ordering">높은 평점 순 |</a>
+                    <a href="/result?order_by=high_review" class="ordering">리뷰 많은 순</a>
+                {% elif order_type == "low_price" %}
+                    <a href="/result?order_by=high_price" class="ordering">높은 가격 순 |</a>
+                    <a href="/result?order_by=low_price" class="ordering order_type">낮은 가격 순 |</a>
+                    <a href="/result?order_by=high_rating" class="ordering">높은 평점 순 |</a>
+                    <a href="/result?order_by=high_review" class="ordering">리뷰 많은 순</a>
+                {% elif order_type == "high_rating" %}
+                    <a href="/result?order_by=high_price" class="ordering">높은 가격 순 |</a>
+                    <a href="/result?order_by=low_price" class="ordering">낮은 가격 순 |</a>
+                    <a href="/result?order_by=high_rating" class="ordering order_type">높은 평점 순 |</a>
+                    <a href="/result?order_by=high_review" class="ordering">리뷰 많은 순</a>
+                {% elif order_type == "high_review" %}
+                    <a href="/result?order_by=high_price" class="ordering">높은 가격 순 |</a>
+                    <a href="/result?order_by=low_price" class="ordering">낮은 가격 순 |</a>
+                    <a href="/result?order_by=high_rating" class="ordering">높은 평점 순 |</a>
+                    <a href="/result?order_by=high_review" class="ordering order_type">리뷰 많은 순</a>
+                {% endif %}
+    </div>
+    <section class="books_result">
+        <!-- <div class="book">
+            <img src="http://image.yes24.com/goods/45353675/800x0" alt="">
+            <div class="book_info">
+                <div class="main_info">
+                    <h1 class="title">용의자 X의 헌신</h1>
+                    <h3 class="author">히가시노 게이고 저</h3>
+                </div>
+                <span class="price">15,120원</span>
+                <div class="review_info">
+                    <span class="review">회원리뷰(15건)</span>
+                    <span class="rating">9.4</span>
+                </div>
+                <p class="story">백 퍼센트의 사랑, 백 퍼센트의 헌신……추리 소설 역사상 가장 처절하고 가장 아름다운 한 편의 서사시히가시노 게이고 문학의 정수로 일컬어지는 『용의자 X의 헌신』이 새롭게 번역되어 출간됐다. 일본 문학 전문 번역가 양억관 씨가 자신의 번역을 대폭 손질해 원작이 지닌 문학적 향기와 감동을 오롯이 되살려 냈다. ...</p>
+            </div>
+            <button class="link" type="button">
+                <a href="http://www.yes24.com/Product/Goods/45353675">구매하기</a>
+            </button>
+        </div> -->
+        {% for book_data in book_datas %}
+        <div class="book">
+            <img src={{book_data.img}} alt="">
+            <div class="book_info">
+                <div class="main_info">
+                    <h1 class="title">{{book_data.title}}</h1>
+                    <h3 class="author">{{book_data.author}} 저</h3>
+                </div>
+                <span class="price">{{book_data.price}}원</span>
+                <div class="review_info">
+                    <span class="review">회원리뷰({{book_data.review}}건)</span>
+                    <span class="rating">{{book_data.rating}}</span>
+                </div>
+                <p class="story">{{book_data.story}}</p>
+            </div>
+            <button class="link" type="button">
+                <a href={{book_data.url}}>구매하기</a>
+            </button>
+        </div>
+    {% endfor %}
+    </section>
+    <nav class="nav">
+        <img src="../static/img/newLogo.png" alt="logo" class="web_logo">
+        <div class="nav_btns">
+            <div class="web_orderings">
+                {% if order_type == "basic" %}
+                    <a href="/result?order_by=high_price" class="ordering">높은 가격 순</a>
+                    <a href="/result?order_by=low_price" class="ordering">낮은 가격 순</a>
+                    <a href="/result?order_by=high_rating" class="ordering">높은 평점 순</a>
+                    <a href="/result?order_by=high_review" class="ordering">리뷰 많은 순</a>
+                {% elif order_type == "high_price" %}
+                    <a href="/result?order_by=high_price" class="ordering order_type">높은 가격 순</a>
+                    <a href="/result?order_by=low_price" class="ordering">낮은 가격 순</a>
+                    <a href="/result?order_by=high_rating" class="ordering">높은 평점 순</a>
+                    <a href="/result?order_by=high_review" class="ordering">리뷰 많은 순</a>
+                {% elif order_type == "low_price" %}
+                    <a href="/result?order_by=high_price" class="ordering">높은 가격 순</a>
+                    <a href="/result?order_by=low_price" class="ordering order_type">낮은 가격 순</a>
+                    <a href="/result?order_by=high_rating" class="ordering">높은 평점 순</a>
+                    <a href="/result?order_by=high_review" class="ordering">리뷰 많은 순</a>
+                {% elif order_type == "high_rating" %}
+                    <a href="/result?order_by=high_price" class="ordering">높은 가격 순</a>
+                    <a href="/result?order_by=low_price" class="ordering">낮은 가격 순</a>
+                    <a href="/result?order_by=high_rating" class="ordering order_type">높은 평점 순</a>
+                    <a href="/result?order_by=high_review" class="ordering">리뷰 많은 순</a>
+                {% elif order_type == "high_review" %}
+                    <a href="/result?order_by=high_price" class="ordering">높은 가격 순</a>
+                    <a href="/result?order_by=low_price" class="ordering">낮은 가격 순</a>
+                    <a href="/result?order_by=high_rating" class="ordering">높은 평점 순</a>
+                    <a href="/result?order_by=high_review" class="ordering order_type">리뷰 많은 순</a>
+                {% endif %}
+            </div>
+            <div class="btns">
+                <div class="retest">
+                    <h3>...이 책은 나랑 안 맞는걸?</h3>
+                    <form action="/" method="get" class="test">
+                        <button type="submit">테스트 다시 하기</button>
+                    </form>
+                </div>
+                <div class="line"></div>
+                <div class="share">
+                    <div class="url">
+                        <button class="copy_btn" type="button">URL 복사하기</button>
+                    </div>
+                    <div class="facebook">
+                        <button class="facebook_share" type="button">
+                            <i class="fab fa-facebook-square"></i>공유하기
+                        </button>
+                    </div>
+                    <div class="kakao">
+                        <button class="kakao_share" type="button">
+                            <i class="fas fa-comment-dots"></i>공유하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="../static/js/result.js"></script>
+</body>
+</html>
