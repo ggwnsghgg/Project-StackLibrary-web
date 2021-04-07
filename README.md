@@ -1,6 +1,7 @@
 # Project-playdata_final
 
-![Alt text](/path/to/playdata.png)
+
+<img src="./playdata.png" />
 
 플레이데이터 에서 진행한 최종발표 자료입니다.
 
