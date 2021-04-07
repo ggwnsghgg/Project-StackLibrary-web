@@ -1,12 +1,11 @@
-# <img src="./playdat.png" />
+# Stack Library
 
-
+<img src="./stack_library.png" />
 </br>
 
 
-
-<img src="./stack_library.png" />
-
+<img src="./playdat.png" />
+</br>
 
 플레이데이터 에서 진행한 최종발표 자료입니다.
 
