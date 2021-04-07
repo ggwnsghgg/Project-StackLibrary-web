@@ -15,6 +15,8 @@
 컨텐츠 기반 필터링 방법을 이용한 소설 추천 서비스를 주제로 진행한 프로젝트입니다.
 
 
+</br>
+
 
 ## 팀원
 
@@ -32,7 +34,7 @@
 
 </br>
 
-## Stack
+## 개발환경
 
 - Programming Language : Python 3.7.3
 - WEB : HTML, CSS, JavaScript, Flask 1.1.2
