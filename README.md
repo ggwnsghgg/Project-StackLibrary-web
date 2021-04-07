@@ -1,7 +1,7 @@
 # Project-playdata_final
 
 
-<img src="./playdata.png" />
+<img src="./playdat.png" />
 
 플레이데이터 에서 진행한 최종발표 자료입니다.
 
